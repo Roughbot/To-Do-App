@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { TodoProvider } from "./contexts/index";
+import { TodoForm, TodoItem } from "./components";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -39,9 +40,10 @@ function App() {
     <TodoProvider
       value={{ todos, addTodo, updateTodo, deleteTodo, toggleCompleted }}
     >
-      <div className="text-center bg-blue-300 font-semibold text-4xl">
-        TO DO APP
-      </div>
+      <TodoForm />
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} todo={todo} />
+      ))}
     </TodoProvider>
   );
 }
